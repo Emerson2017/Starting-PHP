@@ -1,0 +1,27 @@
+<?php
+
+	$url = "http://localhost:8081//teste/1500002283/teste";
+
+
+	$data = array("refund_total" => "1000",
+				  "refund_reason" => "teste",
+                  "refund_type" => "card_reversal",
+                  "request_user_id" => "10",
+                  "request_user_name" => "vendedor tef"
+);
+
+
+	try {
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+		curl_close($ch);
+
+		print_r($result);
+	} catch (Exception $e) {
+		echo $e;
+	}
+
